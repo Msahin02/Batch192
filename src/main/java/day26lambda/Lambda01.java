@@ -55,7 +55,7 @@ public class Lambda01 {
         return myList.
                 stream().
                 filter(t->t.length()>5).
-                map(t->t.toUpperCase()).
+                map(String::toUpperCase).
                 collect(Collectors.toList());
     }
 
