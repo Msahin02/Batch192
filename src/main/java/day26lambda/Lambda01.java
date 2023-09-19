@@ -35,7 +35,7 @@ public class Lambda01 {
         myList.
                 stream().
                 filter(t-> !t.startsWith("E")).
-                forEach(t-> System.out.print(t+" "));
+                forEach(Utils::printInTheSameLineWithSpace);
     }
 
     //Example 2: Bir List'te character sayisi 5 den az olan tum elemanlari
@@ -46,7 +46,7 @@ public class Lambda01 {
                 stream().
                 distinct().
                 filter(t->t.length()<5).
-                forEach(t-> System.out.print(t+" "));
+                forEach(Utils::printInTheSameLineWithSpace);
     }
 
     //Example 3: Bir List'teki character sayisi 5 den cok olan tum elemanlari
@@ -55,8 +55,8 @@ public class Lambda01 {
         return myList.
                 stream().
                 filter(t->t.length()>5).
-                map(String::toUpperCase).
-                collect(Collectors.toList());
+                map(String::toUpperCase).//class name :: method name ==> method reference
+                        collect(Collectors.toList());
     }
 
     //Example 4: Bir List'teki character sayisi 5 den az olan tum elemanlari tekrarsiz olarak kucuk harflerle
@@ -68,9 +68,9 @@ public class Lambda01 {
                 stream().
                 distinct().
                 filter(t->t.length()<5).
-                map(t->t.toLowerCase()).
+                map(String::toLowerCase).
                 sorted().
-                forEach(t-> System.out.print(t+" "));
+                forEach(Utils::printInTheSameLineWithSpace);
     }
     //Example 5: Bir List'teki elemanlari tekrarsiz olarak buyuk harflerle alfabetik sirada
     // console'a yazdiran method'u olusturunuz.
@@ -78,41 +78,22 @@ public class Lambda01 {
         myList.
                 stream().
                 distinct().
-                map(t->t.toUpperCase()).
+                map(String::toUpperCase).
                 sorted().
-                forEach(t-> System.out.print(t+" "));
+                forEach(Utils::printInTheSameLineWithSpace);
     }
     //Example 6: Bir List'teki elemanlari tekrarsiz olarak kucuk harflerle uzunluklarina gore kucukten buyuge
     // siralayarak console'a yazdiran method'u olusturunuz.
+
+    //==>best practice
     public static void printElUniqueLowerCaseSortWithLength(List<String> myList){
         myList.
                 stream().
                 distinct().
-                map(t->t.toLowerCase()).
-                sorted(Comparator.comparing(t->t.length())).
-                forEach(t-> System.out.print(t+" "));
+                map(String::toLowerCase).
+                sorted(Comparator.comparing(String::length)).
+                forEach(Utils::printInTheSameLineWithSpace);
     }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
